@@ -1,0 +1,28 @@
+{
+  "name": "flappy-bird",
+  "version": "1.0.0",
+  "description": "flappy bird",
+  "main": "index.js",
+  "scripts": {
+    "start": "next dev",
+    "dstart": "rmdir /s /q .next | next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cogumelo-Seco/flappy-bird.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Cogumelo-Seco/flappy-bird/issues"
+  },
+  "homepage": "https://github.com/Cogumelo-Seco/flappy-bird#readme",
+  "dependencies": {
+    "next": "^16.2.9",
+    "nprogress": "^0.2.0",
+    "react": "^19.2.7",
+    "react-doom": "^1.0.0"
+  }
+}
