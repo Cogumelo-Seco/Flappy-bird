@@ -1,13 +1,11 @@
 export default async function GameLoop(Game) {
-    let dt = (+new Date() - Game.playerData.lastTime) / 100;
-    Game.playerData.lastTime = +new Date();
+    if (!Game.playerData) Game.playerData = JSON.parse(JSON.stringify(Game.defaultPlayerData))
 
-    Game.playerData.velocityY += Game.playerData.gravity*dt;
-    Game.playerData.heightPercent += -(Game.playerData.velocityY*dt);
-
-    if (Game.playerData.heightPercent < 0) {
-        Game.playerData.heightPercent = 0;
-        Game.playerData.velocityY = 0;
+    if (Game.gameStage == 'game') {
+        Game.movePlayer()
+        Game.moveObstacles()
+        Game.spawnObstacles()
+        Game.checkPlayerCollision()
     }
 
     setTimeout(() => GameLoop(Game), 1000/30)

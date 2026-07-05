@@ -18,13 +18,12 @@ export default function Home() {
 
         Render.gameState = Game
         Render.listenerState = Listener
-
-        Game.Start()
     }, []);
 
     return (
         <main>
             <canvas id="gameCanvas" />
+            <div id="screenElements" />
         </main>
     );
 }

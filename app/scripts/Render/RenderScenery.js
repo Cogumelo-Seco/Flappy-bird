@@ -3,7 +3,8 @@ export default async(Render, event) => {
 
     let sceneryAnimationFrame = Render.gameState.animations['scenery'].frame
 
-    Render.canvas.style.background = `-${Render.gameState.animations['background'].frame}px 0 url(/imgs/scenery/${Render.gameState.gameStyle}/background.png)`
+    Render.canvas.style.background = `url(/imgs/scenery/${Render.gameState.gameStyle}/background.png)`
+    Render.canvas.style.backgroundSize = Render.canvas.height+'px'
 
     let sceneryImageData = Render.gameState.images[`imgs/scenery/${Render.gameState.gameStyle}/scenery.png`]
     let sceneryWidth = sceneryImageData.image.width*worldScale
@@ -16,7 +17,7 @@ export default async(Render, event) => {
     Render.groundY = Render.canvas.height-(groundHeight*0.7)
     
 
-    for (let x = 0;x <= Render.canvas.width/(sceneryWidth*0.5);x++) {
+    for (let x = 0;x <= Render.canvas.width/sceneryWidth+(sceneryWidth*(sceneryAnimationFrame/100));x++) {
         Render.ctx.drawImage(
             sceneryImageData.image, 
             sceneryWidth*x-(sceneryWidth*(sceneryAnimationFrame/100)),
@@ -27,7 +28,10 @@ export default async(Render, event) => {
     }
 
 
-    for (let x = 0;x <= Render.canvas.width/(groundWidth*0.5);x++) {
+    await Render.RenderObstacles()
+
+
+    for (let x = 0;x <= Render.canvas.width/groundWidth+(3*groundWidth*(sceneryAnimationFrame/100));x++) {
         Render.ctx.drawImage(
             groundImageData.image, 
             groundWidth*x-(3*groundWidth*(sceneryAnimationFrame/100)),
@@ -36,6 +40,4 @@ export default async(Render, event) => {
             groundHeight
         )
     }
-
-    
 }

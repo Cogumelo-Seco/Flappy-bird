@@ -21,9 +21,18 @@ export default async(Listener, { event, on }) => {
     }
     let keyInfo = Listener.keys[keyPressed]
 
-    if ((keyPressed == 'Space' || keyPressed == 'MouseClick') && !hold && Listener.gameState.playerData.heightPercent < 100) Listener.gameState.playerData.velocityY = Listener.gameState.playerData.jumpForce;
+    
 
-    if (keyPressed == 'Digit1') Listener.gameState.gameStyle = 'dark'
-    if (keyPressed == 'Digit2') Listener.gameState.gameStyle = 'nyan'
-    if (keyPressed == 'Digit3') Listener.gameState.gameStyle = 'default'
+    if (/[0-9]/g.test(event.key)) {
+        if (event.key == '1') Listener.gameState.gameStyle = 'nyan'
+        if (event.key == '2') Listener.gameState.gameStyle = 'guto'
+        if (event.key == '3') Listener.gameState.gameStyle = 'dark'
+        if (event.key == '4') Listener.gameState.gameStyle = 'default'
+    } else {
+        if ((event.type == 'keyup' || keyPressed == 'MouseClick') && Listener.gameState.gameStage == 'game' && !hold && Listener.gameState.playerData.heightPercent < 100) Listener.gameState.playerData.velocityY = Listener.gameState.playerData.jumpForce;
+
+        if ((event.type == 'keyup' || keyPressed == 'MouseClick') && Listener.gameState.gameStage == 'menu') {
+            Listener.gameState.startGame()
+        }
+    }
 }

@@ -8,21 +8,12 @@ export default (Game) => {
             totalDelay: 1000/25,
             loop: true
         },
-        'background': {
-            startFrame: 0,
-            endFrame: window.innerWidth,
-            frame: 0,
-            delay: 0,
-            totalDelay: 1000/25,
-            loop: true
-        },
         'player': {
             startFrame: 0,
             endFrame: 2,
             frame: 0,
             delay: 0,
             totalDelay: 1000/25,
-            //loop: true
             boomerang: true
         },
         'nyan': {
@@ -32,7 +23,6 @@ export default (Game) => {
             delay: 0,
             totalDelay: 1000/25,
             loop: true
-            //boomerang: true
         }
     }
 }

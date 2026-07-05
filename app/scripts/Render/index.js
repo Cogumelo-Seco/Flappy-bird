@@ -14,7 +14,9 @@ export class RenderClass {
         
         this.RenderScenery = (event) => require('./RenderScenery.js').default(this, event)
         this.RenderPlayer = (event) => require('./RenderPlayer.js').default(this, event)
-
+        this.RenderObstacles = (event) => require('./RenderObstacles.js').default(this, event)
+        this.RenderMenu = (event) => require('./RenderMenu.js').default(this, event)
+        this.RenderGameInfo = (event) => require('./RenderGameInfo.js').default(this, event)
         this.loop()
     }
 
@@ -32,7 +34,11 @@ export class RenderClass {
 
         if (this.gameState && this.gameState.loading.loadComplete) {            
             this.RenderScenery()
+            //this.RenderObstacles()
             this.RenderPlayer()
+
+            if (this.gameState.gameStage == 'menu') this.RenderMenu()
+            if (this.gameState.gameStage == 'game') this.RenderGameInfo()
         }
 
         window.requestAnimationFrame(() => this.loop())

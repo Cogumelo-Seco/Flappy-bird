@@ -1,14 +1,14 @@
 export default async(Render, event) => {
     let playerImageData = Render.gameState.images[`imgs/birds/${Render.gameState.gameStyle}/bird.png`]
-    let playerAnimationFrame = Render.gameState.animations[playerImageData.animationId].frame
 
-    let playerSize = 50
-    let playerX = Render.canvas.width*0.25
+    let playerSize = Render.gameState.playerData.size
+    let playerX = Render.canvas.width*(Render.gameState.playerData.widthPercent/100)
     let playerY = (Render.groundY-(playerSize*1.5))*(1-Render.gameState.playerData.heightPercent/100)+playerSize
 
     let playerRotation = 0
-    if (Render.gameState.playerData.velocityY < 0) playerRotation = -(Render.gameState.playerData.velocityY/Render.gameState.playerData.jumpForce*45)
-    if (Render.gameState.playerData.velocityY > (Render.gameState.playerData.jumpForce/2)*-1) 
+    if (Render.gameState.playerData.velocityY < 0) 
+        playerRotation = -(Render.gameState.playerData.velocityY/Render.gameState.playerData.jumpForce*45)
+    if (Render.gameState.playerData.velocityY > (Render.gameState.playerData.jumpForce/2)*-1)
         playerRotation = (Render.gameState.playerData.velocityY-((Render.gameState.playerData.jumpForce/2)*-1))/Render.gameState.playerData.velocityY*90
 
     Render.ctx.save(); 
@@ -17,10 +17,10 @@ export default async(Render, event) => {
     
     Render.ctx.drawImage(
         playerImageData.image,
-        playerImageData.animationConfig[playerAnimationFrame].x,
-        playerImageData.animationConfig[playerAnimationFrame].y,
-        playerImageData.animationConfig[playerAnimationFrame].width,
-        playerImageData.animationConfig[playerAnimationFrame].height,
+        playerImageData.animationConfig[playerImageData.animation.frame].x,
+        playerImageData.animationConfig[playerImageData.animation.frame].y,
+        playerImageData.animationConfig[playerImageData.animation.frame].width,
+        playerImageData.animationConfig[playerImageData.animation.frame].height,
         -Math.floor(playerSize*(1.28))/2, -playerSize/2,
         Math.floor(playerSize*(1.28)),
         playerSize

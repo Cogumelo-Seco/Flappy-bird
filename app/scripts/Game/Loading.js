@@ -45,7 +45,7 @@ export default async function Loading(Game) {
             img.id = dir
             Game.images[dir] = {
                 image: img,
-                animationId,
+                animation: Game.animations[animationId],
                 animationConfig
             }
         }
