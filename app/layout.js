@@ -1,7 +1,7 @@
 import "./styles/global.css"
 
 export const metadata = {
-    title: "Meu Site",
+    title: "Cogu Flappy Bird",
     icons: {
         icon: "https://alpha-site.vercel.app/imgs/Cogu-avatar/Default.png",
     },
